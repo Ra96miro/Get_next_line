@@ -6,7 +6,7 @@
 /*   By: gramiro- <gramiro-@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 03:25:58 by gramiro-          #+#    #+#             */
-/*   Updated: 2022/03/31 17:49:09 by gramiro-         ###   ########.fr       */
+/*   Updated: 2022/04/01 12:45:29 by gramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,24 @@ char	*get_save(char *buff)
 {
 	int		x;
 	int		y;
-	char	*save;
 	char	*rest;
 
 	x = 0;
 	y = 0;
 	while (buff[x] != '\n' && buff[x])
 		x++;
-	save = (char *)malloc(sizeof(char) * (ft_strlen(buff) - x + 1));
-	if (!save)
+	rest = (char *)malloc(sizeof(char) * (ft_strlen(buff) - x + 1));
+	if (!rest)
 		return (0);
 	x++;
 	while (buff[x])
 	{
-		save[y] = buff[x];
+		rest[y] = buff[x];
 		x++;
 		y++;
 	}
-	save[y] = '\0';
-	rest = save;
+	rest[y] = '\0';
+	free(buff);
 	return (rest);
 }
 
@@ -43,9 +42,10 @@ char	*get_line(char *buff)
 {
 	int		x;
 	char	*s;
-	char	*line;
 
 	x = 0;
+	if (!buff)
+		return (0);
 	while (buff[x] != '\n' && buff[x])
 		x++;
 	s = (char *)malloc(sizeof(char) * (x + 2));
@@ -61,9 +61,7 @@ char	*get_line(char *buff)
 	}
 	else
 		s[x] = '\0';
-	line = s;
-	free(s);
-	return (line);
+	return (s);
 }
 
 char	*get_read_file(int fd, char *file)
@@ -92,16 +90,20 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*save;
 
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
 	save = get_read_file(fd, save);
 	line = get_line(save);
 	save = get_save(save);
 	return (line);
 }
 
-int main()
-{
-	int	fd;
+// int main()
+// {
+// 	int	fd;
 
-	fd = open("prova.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-}
+// 	fd = open("prova.txt", O_RDONLY);
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// }
