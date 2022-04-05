@@ -6,12 +6,11 @@
 /*   By: gramiro- <gramiro-@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 03:25:58 by gramiro-          #+#    #+#             */
-/*   Updated: 2022/04/04 19:29:58 by gramiro-         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:16:53 by gramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 void	get_free(char *buff, char *file)
 {
@@ -114,13 +113,3 @@ char	*get_next_line(int fd)
 	save = get_save(save);
 	return (line);
 }
-
-// int main()
-// {
-// 	int	fd;
-
-// 	fd = open("prova.txt", O_RDONLY);
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// }

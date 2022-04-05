@@ -6,7 +6,7 @@
 /*   By: gramiro- <gramiro-@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 19:33:15 by gramiro-          #+#    #+#             */
-/*   Updated: 2022/04/04 19:35:21 by gramiro-         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:16:59 by gramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,14 @@ char	*get_read_file(int fd, char *file)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*save;
+	static char	*save[OPEN_MAX];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (0);
-	save = get_read_file(fd, save);
-	if (!save)
+	save[fd] = get_read_file(fd, save[fd]);
+	if (!save[fd])
 		return (0);
-	line = get_line(save);
-	save = get_save(save);
+	line = get_line(save[fd]);
+	save[fd] = get_save(save[fd]);
 	return (line);
 }
