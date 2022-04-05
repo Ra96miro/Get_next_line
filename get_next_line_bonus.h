@@ -6,7 +6,7 @@
 /*   By: gramiro- <gramiro-@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 19:33:12 by gramiro-          #+#    #+#             */
-/*   Updated: 2022/04/04 19:36:31 by gramiro-         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:04:01 by gramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(const char *str);
 char	*ft_strchr(const char *s, int c);
-char	*get_save(char *buff);
-char	*get_line(char *buff);
+char	*get_save(char *save);
+char	*get_line(char *save);
 char	*get_read_file(int fd, char *file);
 char	*get_next_line(int fd);
+void	get_free(char *buff, char *file);
 
 #endif
